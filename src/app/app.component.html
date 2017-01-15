@@ -1,3 +1,120 @@
-<h1>
-  {{title}}
-</h1>
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"
+        aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#">XLSpaceship</a>
+    </div>
+  </div>
+
+</nav>
+
+
+
+
+<div class="container-fluid">
+
+  <!--top message row-->
+  <div class="row">
+    <h1>
+      {{title}}
+    </h1>
+
+  </div>
+
+  <!-- two div for action and content-->
+
+  <div class="row">
+    <div class="col-md-2">
+
+      <div class="panel panel-primary">
+       
+        <div class="panel-heading">Action Panel</div>
+
+        <div class="panel-body">
+          
+          <ul class="nav nav-pills">
+            <li role="presentation" class="active"> <button class="btn btn-primary" (click)=createGame()>Create Game</button></li>
+
+          </ul>
+
+          <p> Select a game from drop down to load its status and play!</p>
+
+          <select [(ngModel)]="selectedGame" (change)="onselect()">
+              <option *ngFor="let game of games" [value]="game.game_id">{{game.game_id}}</option>
+          </select>
+
+         
+
+           <ul class="nav nav-pills">
+            <li *ngIf="selectedGame != 'select game'"  role="presentation" class="active"> 
+               <p> Fire Salvo</p>
+              <button class="btn btn-primary" (click)=fireSalvo()>Fire Salvo</button></li>
+
+          </ul>
+
+        </div>
+
+      </div>
+
+   </div>
+
+<form>
+    <div class="col-md-10">
+      <div class="panel panel-primary">
+
+          <div class="panel-heading">Game Status -  {{selectedGame}}</div>
+
+          <div class="panel-body"> 
+
+             <div> Next Turn :  {{nextTurn.user_id}}</div>
+                
+                 <div class="col-md-5">
+
+                    <div class="panel panel-default">
+                        <div class="panel-heading">Self -  {{self.user_id}}</div>
+
+                        <div class="panel-body"> 
+
+                          <div class="well">
+
+                            <div *ngFor="let item of self.board" > <h2 style="letter-spacing: 10px">{{item}} </h2>         </div>
+
+                            </div>
+
+
+                        </div>
+                      </div>
+
+                 </div>
+
+
+                  <div class="col-md-5">
+                      <div class="panel panel-default">
+                          <div class="panel-heading">Opponent -  {{opponent.user_id}}</div>
+                          <div class="panel-body"> 
+                               <div class="well">
+
+                            <div *ngFor="let item of opponent.board" > <h2 style="letter-spacing: 10px">{{item}} </h2>       </div>
+
+                            </div>
+
+                          </div>
+                      </div>
+                 </div>
+
+          </div>
+      </div>
+    </div>
+</form>
+
+  </div>
+
+
+</div>
